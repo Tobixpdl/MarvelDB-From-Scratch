@@ -11,7 +11,7 @@ namespace MarvelDBProject
 {
 
 
-    public partial class _Default
+    public partial class HomeDefault
     {
 
         /// <summary>

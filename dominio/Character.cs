@@ -15,6 +15,7 @@ namespace dominio
         public string MovieFA { get; set; } = null;
         public string SerieFA { get; set; } = null;
         public Alingment Alingment { get; set; }
+        public string color { get; set; }
         public List<Imagen> Images { get; set; }
         public string ImageUrl
         {
@@ -23,6 +24,8 @@ namespace dominio
                 return Images?.FirstOrDefault()?.Url;
             }
         }
+
+
 
     }
 }

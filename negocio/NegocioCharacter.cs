@@ -19,7 +19,7 @@ namespace negocio
             {
                 datos.setearConsulta(@"
                 SELECT top 10 c.character_id, c.name, c.description, ct.type_id AS tipoID, ct.type_name AS NameID,
-                m.name AS MovieName, s.name AS SeriesName, a.id AS AlID, a.nombre AS AligmentName
+                m.name AS MovieName, s.name AS SeriesName, a.id AS AlID, a.nombre AS AligmentName, c.color
                 FROM Characters c
                 LEFT JOIN CharacterTypes ct ON c.type_id = ct.type_id
                 LEFT JOIN Alignment a ON c.alignment_id = a.id
@@ -36,6 +36,7 @@ namespace negocio
                     aux.Description = datos.Lector.GetString(2);
                     aux.MovieFA = datos.Lector.IsDBNull(datos.Lector.GetOrdinal("MovieName")) ? null : datos.Lector.GetString(datos.Lector.GetOrdinal("MovieName"));
                     aux.SerieFA = datos.Lector.IsDBNull(datos.Lector.GetOrdinal("SeriesName")) ? null : datos.Lector.GetString(datos.Lector.GetOrdinal("SeriesName"));
+                    aux.color = (string)datos.Lector["color"];
 
                     CharacterType type = new CharacterType();
                     type.Id = datos.Lector.GetInt32(3);
@@ -74,7 +75,7 @@ namespace negocio
             {
                 datos.setearConsulta(@"
                 SELECT top 10 c.character_id, c.name, c.description, ct.type_id AS tipoID, ct.type_name AS NameID,
-                m.name AS MovieName, s.name AS SeriesName, a.id AS AlID, a.nombre AS AligmentName
+                m.name AS MovieName, s.name AS SeriesName, a.id AS AlID, a.nombre AS AligmentName, c.color
                 FROM Characters c
                 LEFT JOIN CharacterTypes ct ON c.type_id = ct.type_id
                 LEFT JOIN Alignment a ON c.alignment_id = a.id
@@ -102,6 +103,8 @@ namespace negocio
                     a.Id = datos.Lector.GetInt32(7);
                     a.Name = datos.Lector.GetString(8);
                     aux.Alingment = a;
+
+                    aux.color = (string)datos.Lector["color"];
 
                     aux.Images = negocioImagen.listFCharacter(aux.Id);
 

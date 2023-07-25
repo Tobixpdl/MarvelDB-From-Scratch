@@ -1,0 +1,148 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MiMaster.master.cs" Inherits="MarvelDBProject.MiMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Marvel WIKI</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+<%--        <script>
+        let searchBtn = document.querySelector('.searchBtn');
+        let closeBtn = document.querySelector('.closeBtn');
+        let searchBox = document.querySelector('.searchBox');
+
+        searchBtn.onclick = function () {
+            searchBox.classList.add('active');
+            closeBtn.classList.add('active');
+            searchBtn.classList.add('active');
+        };
+
+        closeBtn.onclick = function () {
+            searchBox.classList.remove('active');
+            closeBtn.classList.remove('active');
+            searchBtn.classList.remove('active');
+         };
+
+        </script>--%>
+</head>
+<body class="bodyT">
+    <form id="form1" runat="server">
+        <header>
+            <a class="logo" runat="server" href="MoreInfo.aspx">MarvelWiki</a>
+                <div class="group">
+                    <ul class="navigation">
+                        <li><a runat="server" href="MoreInfo.aspx">Inicio</a></li>
+                        <li><a runat="server" href="MoreInfo.aspx">Acerca de</a></li>
+                        <li><a runat="server" href="MoreInfo.aspx">Contacto</a></li>
+                    </ul>
+                </div>
+        </header>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
+
+<style>
+    .* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:'Times New Roman', Times, serif;
+    }
+
+    .bodyT {
+        background-color: #000000;       
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+        .bodyT::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE9r-g0b__DKCTfghusX4d2LqSHXwEWCP4d5K7mSgZ_kOqcaI5BWDlr-qKPKQXFyzhxhI&usqp=CAU'); /* Replace 'path/to/your-pattern.png' with the actual path to your pattern image */
+            opacity: 0.2; /* Adjust the opacity of the pattern to make it subtle */
+            z-index: -100;
+        }
+
+    header {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:80px;
+        background: #fff;
+        padding: 20px 40px;
+        display: flex;
+        align-items: center;
+        color:black;
+        box-shadow: 0 15px 15px rgba(0,0,0,0.05);
+        justify-content:space-between;
+    }
+    
+    .logo {
+        color: #333;
+        text-decoration: none;
+        font-size: 1.5em;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+    
+   .group {
+        display: flex;
+        align-items: center;
+        padding-right: 100px;
+    }
+   
+    header ul {
+        position: relative;
+        display: flex;
+        gap: 30px;
+    }
+
+        header ul li {
+            list-style: none;
+        }
+        
+            header ul li a {
+                position: relative;
+                text-decoration: none;
+                font-size: 1em;
+                color: #333;
+                text-transform: uppercase;
+                letter-spacing: 0.2em;
+            }
+
+                header ul li a::before {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    width: 100%;
+                    height: 2px;
+                    background: #333;
+                    transform: scaleX(0);
+                    transition: transform 0.5s ease-in-out;
+                    transform-origin: right;
+                }
+
+                header ul li a:hover::before {
+                    transform: scaleX(1);
+                    transform-origin: left;
+                }
+
+</style>
+

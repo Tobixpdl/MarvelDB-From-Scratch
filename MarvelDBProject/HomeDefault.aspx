@@ -1,39 +1,40 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="MarvelDBProject._Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="HomeDefault.aspx.cs" Inherits="MarvelDBProject.HomeDefault" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-  <main>
-     <div class="card-row">
-        <asp:Repeater ID="rprCharacters" runat="server">
-            <ItemTemplate>
-                  <div class = "card">
-                    <img src='<%# Eval("ImageUrl") %>' alt="">
-                    <div class="card-content">
-                      <h2>
-                        <%#Eval("Name")%>
-                      </h2>
-                      <p>
-                        <%#Eval("Description")%>
-                      </p>
-                      <a href="MoreInfo.aspx?Id=<%#Eval("Id") %>" class="button">
-                        Find out more 
-                      </a>
-                    </div>
-                  </div>
-            </ItemTemplate>
-        </asp:Repeater>
-     </div>
-  </main>
-
+     <div class="dx">
+         <div class="card-row">
+            <asp:Repeater ID="rprCharacters" runat="server">
+                <ItemTemplate>
+                      <div class = "card">
+                        <img src='<%# Eval("ImageUrl") %>' alt="">
+                        <div class="card-content">
+                          <h2>
+                            <%#Eval("Name")%>
+                          </h2>
+                          <p>
+                            <%#Eval("Description")%>
+                          </p>
+                          <a href="MoreInfo.aspx?Id=<%#Eval("Id") %>" class="button">
+                            Find out more 
+                          </a>
+                        </div>
+                      </div>
+                </ItemTemplate>
+            </asp:Repeater>
+         </div>
+      </div>
 
     <style>
-    main {
+    .dx {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 50px;
-        font-family: 'Roboto', sans-serif;
+        z-index: 20;
+        margin-top: 100px; /* Add a top margin to create space for the header */
     }
 
     .card-row {
@@ -52,6 +53,7 @@
         cursor: pointer;
         position: relative;
         color: rgb(240, 240, 240);
+        background-color: black;
         box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
     }
 
@@ -62,7 +64,6 @@
             height: 100%;
             top: 0;
             left: 0;
-            opacity: 0.9;
             transition: opacity .2s ease-out;
         }
 
@@ -105,7 +106,7 @@
 
         .card:hover img {
             transition: opacity .3s ease-in;
-            opacity: 1;
+            opacity: 0.5;
         }
     </style>
 
