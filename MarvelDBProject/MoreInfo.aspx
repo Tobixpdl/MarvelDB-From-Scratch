@@ -1,29 +1,34 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="MoreInfo.aspx.cs" Inherits="MarvelDBProject.MoreInfo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-   <%--    <div class = "info-card" style="background-color: <%:Character.color%>50;">
-           <div class="info-card-content">
-             <h2><%:Character.Name%></h2>
-             <p><%:Character.Description%></p> 
-             <p>The first movie where this character appears on is: "<%:Character.MovieFA%>"</p>
-             <p>This character is a <%:Character.Type.Name %></p>
-             <p>And a <%:Character.Alingment.Name%></p>
-           </div>
-         <img src='<%:Character.Images[0].Url%>' alt="">
-       </div>--%>
-
-    <article>
-         <img src='<%:Character.Images[0].Url%>' alt="">
-         <img src='<%:Character.Images[1].Url%>' alt="">
-    </article>
+   
+  <div class="infoContainer">
+      <article>
+           <img src='<%:Character.Images[0].Url%>' alt="">
+           <img src='<%:Character.Images[1].Url%>' alt="">
+      </article>
+      <div class = "info-card" style="background-color: <%:Character.color%>50;">
+          <div class="info-card-content">
+            <h2><%:Character.Name%></h2>
+            <p><%:Character.Description%></p> 
+            <p>The first movie where this character appears on is: "<%:Character.MovieFA%>"</p>
+            <p>This character is a <%:Character.Type.Name %></p>
+            <p>And a <%:Character.Alingment.Name%></p>
+          </div>
+      </div>
+  </div>
 
     <style>
+        .infoContainer {
+            display: flex;
+            gap: 100px;
+            margin: 200px 50px;
+        }
+
         article {
             position: relative;
             padding: 20px;
             width: 350px;
             transition: all .3s ease;
-            top:200px;
             margin: auto;
         }
             article img:first-child {
@@ -34,7 +39,7 @@
             }
             article img:last-child {
                 position: absolute;
-                width: 400px;
+                width: 350px;
                 bottom: 0;
                 left: 0;
                 right: 0;

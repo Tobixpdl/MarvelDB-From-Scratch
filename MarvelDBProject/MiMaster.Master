@@ -8,34 +8,16 @@
     <title>Marvel WIKI</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-<%--        <script>
-        let searchBtn = document.querySelector('.searchBtn');
-        let closeBtn = document.querySelector('.closeBtn');
-        let searchBox = document.querySelector('.searchBox');
-
-        searchBtn.onclick = function () {
-            searchBox.classList.add('active');
-            closeBtn.classList.add('active');
-            searchBtn.classList.add('active');
-        };
-
-        closeBtn.onclick = function () {
-            searchBox.classList.remove('active');
-            closeBtn.classList.remove('active');
-            searchBtn.classList.remove('active');
-         };
-
-        </script>--%>
 </head>
 <body class="bodyT">
     <form id="form1" runat="server">
         <header>
-            <a class="logo" runat="server" href="MoreInfo.aspx">MarvelWiki</a>
+            <a class="logo" runat="server" href="HomeDefault.aspx"><span>Marvel</span>Wiki</a>
                 <div class="group">
                     <ul class="navigation">
-                        <li><a runat="server" href="MoreInfo.aspx">Inicio</a></li>
-                        <li><a runat="server" href="MoreInfo.aspx">Acerca de</a></li>
-                        <li><a runat="server" href="MoreInfo.aspx">Contacto</a></li>
+                        <li><a runat="server" href="HomeDefault.aspx">Inicio</a></li>
+                        <li><a runat="server" href="HomeDefault.aspx">Acerca de</a></li>
+                        <li><a runat="server" href="HomeDefault.aspx">Contacto</a></li>
                     </ul>
                 </div>
         </header>
@@ -51,11 +33,11 @@
 </html>
 
 <style>
-    .* {
+   .* {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family:'Times New Roman', Times, serif;
+        font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     }
 
     .bodyT {
@@ -79,33 +61,48 @@
         }
 
     header {
-        position:absolute;
-        top:0;
-        left:0;
-        width:100%;
-        height:80px;
-        background: #fff;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        background: none;
+        background: linear-gradient(rgba(255, 255, 255, 0.08), black);
+        backdrop-filter: blur(5.3px);
+        -webkit-backdrop-filter: blur(5.3px);
         padding: 20px 40px;
-        display: flex;
         align-items: center;
-        color:black;
+        color: black;
         box-shadow: 0 15px 15px rgba(0,0,0,0.05);
-        justify-content:space-between;
+        display: flex;
+        justify-content: space-between;
     }
-    
+
     .logo {
-        color: #333;
+        color: ghostwhite;
         text-decoration: none;
         font-size: 1.5em;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.1em;
     }
-    
-   .group {
+
+        .logo span {
+            color: ghostwhite;
+            transition: color 0.3s;
+        }
+
+        .logo:hover span {
+            color: red;
+        }
+
+    .group {
         display: flex;
-        align-items: center;
-        padding-right: 100px;
+        justify-content: center; 
+        align-items: center; 
+        flex: 1; 
+        margin-right: 310px;
+        margin-left: auto;
     }
    
     header ul {
@@ -122,7 +119,7 @@
                 position: relative;
                 text-decoration: none;
                 font-size: 1em;
-                color: #333;
+                color: ghostwhite;
                 text-transform: uppercase;
                 letter-spacing: 0.2em;
             }
@@ -133,7 +130,7 @@
                     bottom: -2px;
                     width: 100%;
                     height: 2px;
-                    background: #333;
+                    background: red;
                     transform: scaleX(0);
                     transition: transform 0.5s ease-in-out;
                     transform-origin: right;
@@ -143,6 +140,7 @@
                     transform: scaleX(1);
                     transform-origin: left;
                 }
+
 
 </style>
 

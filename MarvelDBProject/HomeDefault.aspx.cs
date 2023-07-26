@@ -20,5 +20,6 @@ namespace MarvelDBProject
             rprCharacters.DataSource = characters;
             rprCharacters.DataBind();
         }
+
     }
 }
