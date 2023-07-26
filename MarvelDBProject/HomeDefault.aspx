@@ -26,6 +26,16 @@
          </div>
       </div>
 
+    <div class="pagination">
+        <asp:Repeater ID="rprPagination" runat="server" OnItemCommand="rprPagination_ItemCommand">
+            <ItemTemplate>
+                <asp:LinkButton ID="lnkPage" runat="server" Text='<%# Eval("PageNumber") %>'
+                    CommandName="PageNumber" CommandArgument='<%# Eval("PageNumber") %>' CssClass='<%# Eval("CssClass") %>'
+                    Style="color: white; padding: 5px; font-size: 20px;"/>         
+            </ItemTemplate>
+        </asp:Repeater>
+    </div>
+
     <style>
         .dx {
             display: flex;
@@ -108,6 +118,21 @@
                 transition: opacity .3s ease-in;
                 opacity: 0.5;
             }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+
+            .pagination .active {
+                font-weight: bold;
+                pointer-events: none;
+                color:red !important;
+            }
+
     </style>
 
 </asp:Content>

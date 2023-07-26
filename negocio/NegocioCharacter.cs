@@ -9,7 +9,7 @@ namespace negocio
 {
     public class NegocioCharacter
     {
-        public List<Character> Listar()
+        public List<Character> Listar(int pageNumber, int pageSize)
         {
             List<Character> lista = new List<Character>();
             AccesoDatos datos = new AccesoDatos();
@@ -17,14 +17,21 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta(@"
-                SELECT top 10 c.character_id, c.name, c.description, ct.type_id AS tipoID, ct.type_name AS NameID,
+                // Calculate the number of characters to skip to get to the desired page
+                int skipCount = (pageNumber - 1) * pageSize;
+
+                // Update the SQL query to fetch the characters for the specified page
+                datos.setearConsulta($@"
+                SELECT c.character_id, c.name, c.description, ct.type_id AS tipoID, ct.type_name AS NameID,
                 m.name AS MovieName, s.name AS SeriesName, a.id AS AlID, a.nombre AS AligmentName, c.color
                 FROM Characters c
                 LEFT JOIN CharacterTypes ct ON c.type_id = ct.type_id
                 LEFT JOIN Alignment a ON c.alignment_id = a.id
                 LEFT JOIN Movies m ON c.movie_idFA = m.movie_id
-                LEFT JOIN Series s ON c.series_idFA = s.series_id");
+                LEFT JOIN Series s ON c.series_idFA = s.series_id
+                ORDER BY c.character_id
+                OFFSET {skipCount} ROWS
+                FETCH NEXT {pageSize} ROWS ONLY");
 
                 datos.ejecutarLectura();
 
@@ -120,6 +127,31 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public int GetTotalCharacterCount()
+        {
+            int totalCount = 0;
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM Characters");
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    totalCount = datos.Lector.GetInt32(0);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+            return totalCount;
         }
     }
 }
