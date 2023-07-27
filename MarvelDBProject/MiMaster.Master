@@ -4,22 +4,41 @@
 
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Marvel WIKI</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body class="bodyT">
     <form id="form1" runat="server">
         <header>
             <a class="logo" runat="server" href="HomeDefault.aspx"><span>Marvel</span>Wiki</a>
-                <div class="group">
-                    <ul class="navigation">
-                        <li><a runat="server" href="HomeDefault.aspx">Inicio</a></li>
-                        <li><a runat="server" href="HomeDefault.aspx">Acerca de</a></li>
-                        <li><a runat="server" href="HomeDefault.aspx">Contacto</a></li>
-                    </ul>
-                </div>
+            <div class="group">
+                <ul class="navigation">
+                    <li><a runat="server" href="HomeDefault.aspx">Home</a></li>
+                    <li><a runat="server" href="HomeDefault.aspx">Characters</a></li>
+                    <li><a runat="server" href="Movies.aspx">Movie</a></li>
+                </ul>
+            </div>
+            <div class="login">
+                    <%if (this.Session["isUser"] == null)
+                      {%>
+                        <a href="Login.aspx">
+                        <span class="loginIcon">
+                            <ion-icon name="person-circle-outline"></ion-icon>
+                        </span>
+                    <%}
+                      else
+                      {%>
+                       <a href="MyProfile.aspx">
+                        <span class="loginIcon">
+                            <ion-icon name="log-in-outline"></ion-icon>
+                        </span>
+                    <%}%>
+                </a>
+            </div>
         </header>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -33,20 +52,22 @@
 </html>
 
 <style>
-   .* {
+    * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
+
     .bodyT {
-        background-color: #000000;       
+        background-color: #000000;
         background-size: 100% 100%;
         background-repeat: no-repeat;
         min-height: 100vh;
         overflow-x: hidden;
     }
+
 
         .bodyT::before {
             content: "";
@@ -59,6 +80,7 @@
             opacity: 0.2; /* Adjust the opacity of the pattern to make it subtle */
             z-index: -100;
         }
+
 
     header {
         position: absolute;
@@ -76,71 +98,107 @@
         box-shadow: 0 15px 15px rgba(0,0,0,0.05);
         display: flex;
         justify-content: space-between;
+        font-weight: 400;
     }
 
-    .logo {
-        color: ghostwhite;
-        text-decoration: none;
-        font-size: 1.5em;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-    }
+        header nav {
+            display: flex;
+            align-items: center;
+        }
 
-        .logo span {
+        header .logo {
             color: ghostwhite;
-            transition: color 0.3s;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-right: 20px;
         }
 
-        .logo:hover span {
-            color: red;
-        }
-
-    .group {
-        display: flex;
-        justify-content: center; 
-        align-items: center; 
-        flex: 1; 
-        margin-right: 310px;
-        margin-left: auto;
-    }
-   
-    header ul {
-        position: relative;
-        display: flex;
-        gap: 30px;
-    }
-
-        header ul li {
-            list-style: none;
-        }
-        
-            header ul li a {
-                position: relative;
-                text-decoration: none;
-                font-size: 1em;
+            header .logo span {
                 color: ghostwhite;
-                text-transform: uppercase;
-                letter-spacing: 0.2em;
+                transition: color 0.3s;
             }
 
-                header ul li a::before {
-                    content: '';
-                    position: absolute;
-                    bottom: -2px;
-                    width: 100%;
-                    height: 2px;
-                    background: red;
-                    transform: scaleX(0);
-                    transition: transform 0.5s ease-in-out;
-                    transform-origin: right;
+            header .logo:hover span {
+                color: red;
+            }
+
+        header ul {
+            position: relative;
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+            header ul li {
+                list-style: none;
+            }
+
+                header ul li a {
+                    position: relative;
+                    text-decoration: none;
+                    font-size: 1em;
+                    color: ghostwhite;
+                    text-transform: uppercase;
+                    letter-spacing: 0.2em;
                 }
 
-                header ul li a:hover::before {
-                    transform: scaleX(1);
-                    transform-origin: left;
-                }
+                    header ul li a::before {
+                        content: '';
+                        position: absolute;
+                        bottom: -2px;
+                        width: 100%;
+                        height: 2px;
+                        background: red;
+                        transform: scaleX(0);
+                        transition: transform 0.5s ease-in-out;
+                        transform-origin: right;
+                    }
 
 
+                    header ul li a:hover::before {
+                        transform: scaleX(1);
+                        transform-origin: left;
+                    }
+
+    .login {
+        margin-right: 100px;
+    }
+
+        .login .loginIcon {
+            text-decoration: none;
+            font-size: 40px;
+            color: ghostwhite;
+            font-size: 24px;
+        }
+
+    footer {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: none;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 40px;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 768px) {
+        header {
+            flex-direction: column;
+            align-items: center;
+        }
+
+            header .logo {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            header ul {
+                gap: 20px;
+            }
+    }
 </style>
 

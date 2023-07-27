@@ -12,7 +12,6 @@ namespace MarvelDBProject
     public partial class HomeDefault : System.Web.UI.Page
     {
         NegocioCharacter NegocioCharacter = new NegocioCharacter();
-        List<Character> characters = new List<Character>();
         private int currentPage = 1;
         //NUMERO DE CARDS POR PAGINA
         private int pageSize = 9;

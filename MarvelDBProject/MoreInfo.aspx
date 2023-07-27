@@ -1,26 +1,63 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="MoreInfo.aspx.cs" Inherits="MarvelDBProject.MoreInfo" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   
-  <div class="infoContainer">
-      <article>
-           <img src='<%:Character.Images[0].Url%>' alt="">
-           <img src='<%:Character.Images[1].Url%>' alt="">
-      </article>
-      <div class = "info-card" style="background-color: <%:Character.color%>50;">
-          <div class="info-card-content">
-            <h2><%:Character.Name%></h2>
-            <p><%:Character.Description%></p> 
-            <p>The first movie where this character appears on is: "<%:Character.MovieFA%>"</p>
-            <p>This character is a <%:Character.Type.Name %></p>
-            <p>And a <%:Character.Alingment.Name%></p>
-          </div>
-      </div>
-  </div>
+
+    <%if (Character != null)
+        { %>
+    <div class="infoContainer">
+        <article>
+            <img src='<%:Character.Images[0].Url%>' alt="">
+            <img src='<%:Character.Images[1].Url%>' alt="">
+        </article>
+        <div class="info-card" style="background-color: <%:Character.color%>50;">
+            <div class="info-card-content">
+                <h2><%:Character.Name%></h2>
+                <p><%:Character.Description%></p>
+                <p>The first movie where this character appears on is: "<%:Character.MovieFA%>"</p>
+                <p>This character is a <%:Character.Type.Name %></p>
+                <p>And a <%:Character.Alingment.Name%></p>
+            </div>
+        </div>
+    </div>
+
+    <%     }
+
+    %>
+
+    <%else
+        { %>
+    <div class="infoMovieContainer">
+        <div class="info-card">
+            <div class="info-card-content">
+                <h2><%:Movie.Name%></h2>
+                <p><%:Movie.Description%></p>
+                <p>This movie's phase is: "<%:Movie.Phase%>"</p>
+                <p>The duration of this movie is <%:Movie.Duration %> minutes</p>
+                <p>This movie was released the <%:Movie.ReleaseDate.ToString()%></p>
+            </div>
+        </div>
+        <div class="MovieImages">
+            <asp:Repeater ID="rprMovieImages" runat="server">
+                <ItemTemplate>
+                    <div class="card">
+                        <img src='<%# Eval("Url") %>' alt="">
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+    </div>
+
+
+    <%      } %>
 
     <style>
         .infoContainer {
-            display: flex;
+            display:flex;
             gap: 100px;
+            margin: 200px 50px;
+        }
+        .infoMovieContainer{
+             gap: 100px;
             margin: 200px 50px;
         }
 
@@ -31,12 +68,14 @@
             transition: all .3s ease;
             margin: auto;
         }
+
             article img:first-child {
                 box-shadow: 0 60px 60px -60px rgba(0,30,255,0.5);
                 border-radius: 4px;
                 object-fit: cover;
                 width: 100%;
             }
+
             article img:last-child {
                 position: absolute;
                 width: 350px;
@@ -48,6 +87,7 @@
                 transition: .3s ease;
                 opacity: 0;
             }
+
             article:hover {
                 transform: perspective(250px) rotateX(10deg) translateY(-5%) translateZ(0);
             }
@@ -98,6 +138,34 @@
             flex: 1; /* Allow the text content to expand and take up remaining space */
             margin-right: 20px; /* Add some space between the text and the image */
         }
+
+        .MovieImages {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .card {
+            width: 20rem;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            color: rgb(240, 240, 240);
+            background-color: black;
+            box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
+        }
+
+            .card img {
+                width: 100%;
+                top: 0;
+                left: 0;
+                transition: opacity .2s ease-out
+            }
+
+            .card:hover img {
+                transition: opacity .3s ease-in;
+                opacity: 0.5;
+            }
     </style>
 
 </asp:Content>

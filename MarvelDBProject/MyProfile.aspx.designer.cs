@@ -11,16 +11,16 @@ namespace MarvelDBProject
 {
 
 
-    public partial class MoreInfo
+    public partial class MyProfile
     {
 
         /// <summary>
-        /// Control rprMovieImages.
+        /// Control btnLogOut.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rprMovieImages;
+        protected global::System.Web.UI.WebControls.Button btnLogOut;
     }
 }
