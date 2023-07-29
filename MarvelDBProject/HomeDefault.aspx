@@ -1,37 +1,40 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="HomeDefault.aspx.cs" Inherits="MarvelDBProject.HomeDefault" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-     <div class="dx">
-         <div class="card-row">
+    <div class="dx">
+        <div class="card-row">
             <asp:Repeater ID="rprCharacters" runat="server">
                 <ItemTemplate>
-                      <div class = "card">
+                    <div class="card">
                         <img src='<%# Eval("ImageUrl") %>' alt="">
                         <div class="card-content">
-                          <h2 style="color:<%#Eval("color")%>;">
-                            <%#Eval("Name")%>
-                          </h2>
-                          <p>
-                            <%#Eval("Description")%>
-                          </p>
-                          <a href="MoreInfo.aspx?Id=<%#Eval("Id") %>" class="button">
-                            Find out more 
-                          </a>
+                            <a href="#" class="favorite-button">
+                                <i class="far fa-heart"></i> 
+                            </a>
+                            <h2 style="color: <%#Eval("color")%>;">
+                                <%#Eval("Name")%>
+                            </h2>
+                            <p>
+                                <%#Eval("Description")%>
+                            </p>
+                            <a href="MoreInfo.aspx?Id=<%#Eval("Id") %>" class="button">Find out more 
+                            </a>
                         </div>
-                      </div>
+                    </div>
                 </ItemTemplate>
             </asp:Repeater>
-         </div>
-      </div>
+        </div>
+    </div>
 
     <div class="pagination">
         <asp:Repeater ID="rprPagination" runat="server" OnItemCommand="rprPagination_ItemCommand">
             <ItemTemplate>
                 <asp:LinkButton ID="lnkPage" runat="server" Text='<%# Eval("PageNumber") %>'
                     CommandName="PageNumber" CommandArgument='<%# Eval("PageNumber") %>' CssClass='<%# Eval("CssClass") %>'
-                    Style="color: white; padding: 5px; font-size: 20px;"/>         
+                    Style="color: white; padding: 5px; font-size: 20px;" />
             </ItemTemplate>
         </asp:Repeater>
     </div>
@@ -77,6 +80,13 @@
                 transition: opacity .2s ease-out;
             }
 
+            .card .favorite-button {
+                position: absolute;
+                top: 10px; /* Adjust this value to set the desired vertical position from the top */
+                right: 10px; /* Adjust this value to set the desired horizontal position from the right */
+                
+            }
+
             .card h2 {
                 position: absolute;
                 inset: auto auto 30px 30px;
@@ -87,7 +97,7 @@
                 text-transform: uppercase;
             }
 
-            .card p, .card a {
+            .card p, .card .button {
                 position: absolute;
                 opacity: 0;
                 max-width: 80%;
@@ -98,7 +108,7 @@
                 inset: auto auto 80px 30px;
             }
 
-            .card a {
+            .card .button {
                 inset: auto auto 40px 30px;
                 color: inherit;
                 text-decoration: none;
@@ -109,7 +119,7 @@
                 transition: inset .3s ease-out;
             }
 
-            .card:hover p, .card:hover a {
+            .card:hover p, .card:hover .button {
                 opacity: 1;
                 transition: opacity .5s .1s ease-in;
             }
@@ -130,9 +140,8 @@
             .pagination .active {
                 font-weight: bold;
                 pointer-events: none;
-                color:red !important;
+                color: red !important;
             }
-
     </style>
 
 </asp:Content>

@@ -50,7 +50,7 @@
 
 
     <%      } %>
-     <%else
+    <%else
         { %>
     <div class="infoMovieContainer">
         <div class="info-card">
@@ -72,17 +72,34 @@
                 </ItemTemplate>
             </asp:Repeater>
         </div>
+        <div class="SeriesEpisodes">
+            <asp:Repeater ID="rprEpisodes" runat="server">
+                <ItemTemplate>
+                    <div class="info-card">
+                        <div class="info-card-content">
+                            <h2><%#Eval("Name")%></h2>
+                            <p><%#Eval("Description")%></p>
+                            <p>This series' phase is: "<%:Serie.Phase%>"</p>
+                            <p>This episode lasts <%#Eval("Duration") %> minutes</p>
+                            <p>This episode is from season <%#Eval("Season")%></p>
+                            <img src="~/Images/cSharpIcon.png" alt="">
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
     </div>
     <%      } %>
 
     <style>
         .infoContainer {
-            display:flex;
+            display: flex;
             gap: 100px;
             margin: 200px 50px;
         }
-        .infoMovieContainer{
-             gap: 100px;
+
+        .infoMovieContainer {
+            gap: 100px;
             margin: 200px 50px;
         }
 

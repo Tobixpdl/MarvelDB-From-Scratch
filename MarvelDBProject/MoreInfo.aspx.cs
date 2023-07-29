@@ -49,6 +49,8 @@ namespace MarvelDBProject
                 images = Serie.Images;
                 rprSerieImages.DataSource = images;
                 rprSerieImages.DataBind();
+                rprEpisodes.DataSource = Serie.Episodes;
+                rprEpisodes.DataBind();
             }
         }
     }
