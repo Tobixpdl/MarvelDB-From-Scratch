@@ -18,11 +18,14 @@ namespace MarvelDBProject
 
         NegocioMovie nm = new NegocioMovie();
         public Movie Movie { get; set; }
+
+        NegocioSerie ns = new NegocioSerie();
+        public Serie Serie { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             string id = Request.QueryString["Id"];
-
             string movie_Id = Request.QueryString["movie_Id"];
+            string serie_Id = Request.QueryString["serie_Id"];
 
             if (id != null)
             {
@@ -38,10 +41,15 @@ namespace MarvelDBProject
                 rprMovieImages.DataSource = images;
                 rprMovieImages.DataBind();
             }
-
-
-
-
+            else if (serie_Id != null)
+            {
+                List<Imagen> images = new List<Imagen>();
+                int.TryParse(serie_Id, out int SerieIdValue);
+                Serie = ns.ListByID(SerieIdValue);
+                images = Serie.Images;
+                rprSerieImages.DataSource = images;
+                rprSerieImages.DataBind();
+            }
         }
     }
 }

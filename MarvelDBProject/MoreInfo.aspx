@@ -7,7 +7,7 @@
     <div class="infoContainer">
         <article>
             <img src='<%:Character.Images[0].Url%>' alt="">
-            <img src='<%:Character.Images[1].Url%>' alt="">
+            <img src='<%:Character.Images[2].Url%>' alt="">
         </article>
         <div class="info-card" style="background-color: <%:Character.color%>50;">
             <div class="info-card-content">
@@ -24,7 +24,7 @@
 
     %>
 
-    <%else
+    <%else if (Movie != null)
         { %>
     <div class="infoMovieContainer">
         <div class="info-card">
@@ -34,6 +34,7 @@
                 <p>This movie's phase is: "<%:Movie.Phase%>"</p>
                 <p>The duration of this movie is <%:Movie.Duration %> minutes</p>
                 <p>This movie was released the <%:Movie.ReleaseDate.ToString()%></p>
+                <img src="~/Images/cSharpIcon.png" alt="">
             </div>
         </div>
         <div class="MovieImages">
@@ -48,6 +49,30 @@
     </div>
 
 
+    <%      } %>
+     <%else
+        { %>
+    <div class="infoMovieContainer">
+        <div class="info-card">
+            <div class="info-card-content">
+                <h2><%:Serie.Name%></h2>
+                <p><%:Serie.Description%></p>
+                <p>This series' phase is: "<%:Serie.Phase%>"</p>
+                <p>The duration of this serie is <%:Serie.FullDuration %> minutes</p>
+                <p>This movie was released the <%:Serie.ReleaseDate.ToString()%></p>
+                <img src="~/Images/cSharpIcon.png" alt="">
+            </div>
+        </div>
+        <div class="MovieImages">
+            <asp:Repeater ID="rprSerieImages" runat="server">
+                <ItemTemplate>
+                    <div class="card">
+                        <img src='<%# Eval("Url") %>' alt="">
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+    </div>
     <%      } %>
 
     <style>

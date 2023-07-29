@@ -11,16 +11,16 @@ namespace MarvelDBProject
 {
 
 
-    public partial class Movies
+    public partial class SeriesPage
     {
 
         /// <summary>
-        /// Control rprMovies.
+        /// Control rprSeries.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rprMovies;
+        protected global::System.Web.UI.WebControls.Repeater rprSeries;
     }
 }

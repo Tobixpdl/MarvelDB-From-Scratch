@@ -20,6 +20,7 @@
                     <li><a runat="server" href="HomeDefault.aspx">Home</a></li>
                     <li><a runat="server" href="HomeDefault.aspx">Characters</a></li>
                     <li><a runat="server" href="Movies.aspx">Movie</a></li>
+                    <li><a runat="server" href="SeriesPage.aspx">Series</a></li>
                 </ul>
             </div>
             <div class="login">

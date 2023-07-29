@@ -2,7 +2,6 @@
 using negocio;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Printing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,22 +9,22 @@ using System.Web.UI.WebControls;
 
 namespace MarvelDBProject
 {
-    public partial class Movies : System.Web.UI.Page
+    public partial class SeriesPage : System.Web.UI.Page
     {
-        NegocioMovie NegocioMovie = new NegocioMovie();
+        NegocioSerie NegocioSerie = new NegocioSerie();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadMovies();
+                LoadSeries();
             }
         }
-        private void LoadMovies()
+        private void LoadSeries()
         {
-            List<Movie> movies = NegocioMovie.Listar();
+            List<Serie> series = NegocioSerie.Listar();
 
-            rprMovies.DataSource = movies;
-            rprMovies.DataBind();
+            rprSeries.DataSource = series;
+            rprSeries.DataBind();
         }
     }
 }

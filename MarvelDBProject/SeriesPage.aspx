@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="Movies.aspx.cs" Inherits="MarvelDBProject.Movies" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="SeriesPage.aspx.cs" Inherits="MarvelDBProject.SeriesPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-     <div class="dx">
+    <div class="dx">
          <div class="card-row">
-            <asp:Repeater ID="rprMovies" runat="server">
+            <asp:Repeater ID="rprSeries" runat="server">
                 <ItemTemplate>
                       <div class = "card">
                         <img src='<%# Eval("ImageUrl") %>' alt="" loading="lazy">
@@ -14,7 +14,7 @@
                           <p>
                             <%#Eval("Description")%>
                           </p>
-                          <a href="MoreInfo.aspx?movie_Id=<%#Eval("id") %>" class="button">
+                          <a href="MoreInfo.aspx?serie_Id=<%#Eval("id") %>" class="button">
                             Find out more 
                           </a>
                         </div>
@@ -93,7 +93,7 @@
             }
 
             .card:hover h2 {
-                inset: auto auto 380px 30px;
+                inset: auto auto 220px 30px;
                 transition: inset .3s ease-out;
             }
 
