@@ -64,6 +64,7 @@
     <Compile Include="EmailService.cs" />
     <Compile Include="NegocioCharacter.cs" />
     <Compile Include="NegocioEpisode.cs" />
+    <Compile Include="NegocioFavourites.cs" />
     <Compile Include="NegocioMovie.cs" />
     <Compile Include="NegocioPublicacion.cs" />
     <Compile Include="NegocioImagen.cs" />

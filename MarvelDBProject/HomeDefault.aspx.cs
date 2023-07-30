@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using dominio;
@@ -26,6 +28,22 @@ namespace MarvelDBProject
                 LoadCharacters(pageNumber);
                 BindPagination();
             }
+            if (Request.QueryString["Id"] != null)
+            {
+                string id = Request.QueryString["Id"];
+                int.TryParse(id, out int idInteger);
+                Usuario user = (Usuario)this.Session["activeUser"];
+
+                if (user == null)
+                {
+                    Response.Redirect("Login.aspx", true);
+                }
+                else
+                {
+                    NegocioFavourites negocioFavourites = new NegocioFavourites();
+                    negocioFavourites.addFavourite(idInteger, user, NegocioFavourites.Types.character);
+                }
+            }
         }
         private void LoadCharacters(int pageNumber)
         {
@@ -43,7 +61,7 @@ namespace MarvelDBProject
             List<object> paginationData = new List<object>();
             for (int i = 1; i <= totalPages; i++)
             {
-               paginationData.Add(new { PageNumber = i, CssClass = i == currentPage ? "active" : "" });
+                paginationData.Add(new { PageNumber = i, CssClass = i == currentPage ? "active" : "" });
             }
 
             rprPagination.DataSource = paginationData;
@@ -70,5 +88,6 @@ namespace MarvelDBProject
                 BindPagination();
             }
         }
+
     }
 }

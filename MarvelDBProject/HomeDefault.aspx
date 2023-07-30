@@ -9,11 +9,12 @@
             <asp:Repeater ID="rprCharacters" runat="server">
                 <ItemTemplate>
                     <div class="card">
+                        <asp:Label ID="lblA" runat="server" Text="LABEL TEXT" Visible="false"></asp:Label>
                         <img src='<%# Eval("ImageUrl") %>' alt="">
+                        <a href="HomeDefault.aspx?Id=<%#Eval("Id") %>" class="favorite-button" data-id='<%# Eval("Id") %>' data-name='<%# Eval("Name") %>' data-action="add">
+                            <i class="far fa-heart"></i>
+                        </a>
                         <div class="card-content">
-                            <a href="#" class="favorite-button">
-                                <i class="far fa-heart"></i> 
-                            </a>
                             <h2 style="color: <%#Eval("color")%>;">
                                 <%#Eval("Name")%>
                             </h2>
@@ -84,7 +85,8 @@
                 position: absolute;
                 top: 10px; /* Adjust this value to set the desired vertical position from the top */
                 right: 10px; /* Adjust this value to set the desired horizontal position from the right */
-                
+                transform: scale(1.5);
+                color: red;
             }
 
             .card h2 {

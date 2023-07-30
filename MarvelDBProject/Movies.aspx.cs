@@ -19,6 +19,22 @@ namespace MarvelDBProject
             {
                 LoadMovies();
             }
+            if (Request.QueryString["Id"] != null)
+            {
+                string id = Request.QueryString["Id"];
+                int.TryParse(id, out int idInteger);
+                Usuario user = (Usuario)this.Session["activeUser"];
+
+                if (user == null)
+                {
+                    Response.Redirect("Login.aspx", true);
+                }
+                else
+                {
+                    NegocioFavourites negocioFavourites = new NegocioFavourites();
+                    negocioFavourites.addFavourite(idInteger, user, NegocioFavourites.Types.movie);
+                }
+            }
         }
         private void LoadMovies()
         {

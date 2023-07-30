@@ -1,28 +1,31 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="SeriesPage.aspx.cs" Inherits="MarvelDBProject.SeriesPage" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="dx">
-         <div class="card-row">
+        <div class="card-row">
             <asp:Repeater ID="rprSeries" runat="server">
                 <ItemTemplate>
-                      <div class = "card">
+                    <div class="card">
                         <img src='<%# Eval("ImageUrl") %>' alt="" loading="lazy">
+                        <a href="SeriesPage.aspx?Id=<%#Eval("Id") %>" class="favorite-button" data-id='<%# Eval("Id") %>' data-name='<%# Eval("Name") %>' data-action="add">
+                            <i class="far fa-heart"></i>
+                        </a>
                         <div class="card-content">
-                          <h2><%#Eval("Name")%></h2>
-                          <p>
-                            <%#Eval("Description")%>
-                          </p>
-                          <a href="MoreInfo.aspx?serie_Id=<%#Eval("id") %>" class="button">
-                            Find out more 
-                          </a>
+                            <h2><%#Eval("Name")%></h2>
+                            <p>
+                                <%#Eval("Description")%>
+                            </p>
+                            <a href="MoreInfo.aspx?serie_Id=<%#Eval("id") %>" class="button">Find out more 
+                            </a>
                         </div>
-                      </div>
+                    </div>
                 </ItemTemplate>
             </asp:Repeater>
-         </div>
-      </div>
+        </div>
+    </div>
 
     <style>
         .dx {
@@ -65,6 +68,14 @@
                 transition: opacity .2s ease-out;
             }
 
+            .card .favorite-button {
+                position: absolute;
+                top: 10px; /* Adjust this value to set the desired vertical position from the top */
+                right: 10px; /* Adjust this value to set the desired horizontal position from the right */
+                transform: scale(1.5);
+                color: red;
+            }
+
             .card h2 {
                 position: absolute;
                 inset: auto auto 30px 30px;
@@ -75,7 +86,7 @@
                 text-transform: uppercase;
             }
 
-            .card p, .card a {
+            .card p, .card .button {
                 position: absolute;
                 opacity: 0;
                 max-width: 80%;
@@ -86,7 +97,7 @@
                 inset: auto auto 80px 30px;
             }
 
-            .card a {
+            .card .button {
                 inset: auto auto 40px 30px;
                 color: inherit;
                 text-decoration: none;
@@ -97,7 +108,7 @@
                 transition: inset .3s ease-out;
             }
 
-            .card:hover p, .card:hover a {
+            .card:hover p, .card:hover .button {
                 opacity: 1;
                 transition: opacity .5s .1s ease-in;
             }
@@ -106,7 +117,6 @@
                 transition: opacity .3s ease-in;
                 opacity: 0.5;
             }
-
     </style>
 
 </asp:Content>
